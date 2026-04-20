@@ -1,7 +1,23 @@
 import axios from 'axios';
 
+// Determine API base URL based on environment
+const getBaseURL = () => {
+  // Production: Use environment variable
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // Development: Use localhost
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    return 'http://localhost:5000/api';
+  }
+  
+  // Fallback for production without env var (should be avoided)
+  return '/api';
+};
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Explicitly set to backend port
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },

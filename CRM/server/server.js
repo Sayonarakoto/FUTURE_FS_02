@@ -24,9 +24,26 @@ import analyticsRoutes from './routes/analyticsRoutes.js'; // Import analytics r
 
 const app = express();
 
+const allowedOrigins = new Set(
+  [
+    process.env.CLIENT_URL,
+    process.env.CLIENT_URLS,
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://nexus-crm-leads.vercel.app',
+  ]
+    .filter(Boolean)
+    .flatMap((value) => value.split(','))
+    .map((value) => value.trim())
+    .filter(Boolean)
+);
+
 // ─── Global Middleware ────────────────────────────────────
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173', // Vite default
+  origin(origin, callback) {
+    // Allow non-browser/server requests and any explicitly configured origin.
+    callback(null, !origin || allowedOrigins.has(origin));
+  },
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
