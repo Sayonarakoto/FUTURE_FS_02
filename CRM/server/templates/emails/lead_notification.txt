@@ -1,0 +1,16 @@
+--- NEW LEAD CAPTURED ---
+
+A new inquiry has been submitted through the contact form.
+
+NAME: {{lead_name}}
+EMAIL: {{lead_email}}
+
+MESSAGE:
+"{{lead_message}}"
+
+DASHBOARD LINK:
+{{dashboard_url}}
+
+Captured at: {{timestamp}}
+IP: {{request_ip}}
+------------------------

@@ -1,0 +1,51 @@
+/* Import Mantine core styles (Required for v7) */
+@import '@mantine/core/styles.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  font-family: 'Noto Serif JP', serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #fcfcfc;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+#root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Glassmorphism styles */
+.glassmorphism-container {
+  backdrop-filter: blur(10px);
+  background-color: rgba(211, 211, 211, 0.3); /* Light gray with transparency */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  padding: 20px;
+  margin: 0; /* Removed margin to allow full width within parent padding */
+  width: 100%; /* Take full width relative to parent */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Optional: add a subtle shadow */
+  display: flex; /* Ensure inner content is also flex */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally within the container */
+  justify-content: center; /* Center children vertically within the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
