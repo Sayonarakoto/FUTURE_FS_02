@@ -1,10 +1,26 @@
 import axios from 'axios';
 
+const normalizeApiBaseURL = (value) => {
+  if (!value) return null;
+
+  const raw = value.trim().replace(/\/+$/, '');
+
+  if (/^https?:\/\//i.test(raw)) {
+    return raw.endsWith('/api') ? raw : `${raw}/api`;
+  }
+
+  if (raw.startsWith('localhost') || raw.startsWith('127.0.0.1')) {
+    return raw.endsWith('/api') ? `http://${raw}` : `http://${raw}/api`;
+  }
+
+  return raw.endsWith('/api') ? `https://${raw}` : `https://${raw}/api`;
+};
+
 // Determine API base URL based on environment
 const getBaseURL = () => {
   // Production: Use environment variable
   if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+    return normalizeApiBaseURL(import.meta.env.VITE_API_URL);
   }
   
   // Development: Use localhost
